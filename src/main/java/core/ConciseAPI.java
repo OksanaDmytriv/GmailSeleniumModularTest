@@ -4,57 +4,58 @@ package core;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class ConciseAPI {
 
-    private static WebDriver driver = new FirefoxDriver();
+    private static WebDriver driver;
 
     public static WebDriver getDriver() {
         return driver;
     }
 
-    public static void setDriver() {
-        driver = new FirefoxDriver();
+    public static void setDriver(WebDriver newDriver) {
+        driver = newDriver;
     }
 
-    public <V> void assertThat(ExpectedCondition<V> condition) {
+    public static <V> void assertThat(ExpectedCondition<V> condition) {
         assertThat(condition, Configuration.timeout);
     }
 
-    public <V> void assertThat(ExpectedCondition<V> condition, int timeout) {
+    public static <V> void assertThat(ExpectedCondition<V> condition, int timeout) {
         (new WebDriverWait(getDriver(), timeout)).until(condition);
     }
 
-    public WebElement $(By locator) {
+    public static WebElement $(By locator) {
         assertThat(visibilityOfElementLocated(locator));
         return getDriver().findElement(locator);
     }
 
-    public WebElement $(String cssSelector) {
-        return getDriver().findElement(By.cssSelector(cssSelector));
+    public static WebElement $(String cssSelector) {
+        By locator = byCSS(cssSelector);
+        return $(locator);
     }
 
-    public List<WebElement> $$(By locator) {
-        //assertThat(visibilityOfAllElementsLocatedBy(locator));
+    public static List<WebElement> $$(By locator) {
+        assertThat(visibilityOfAllElementsLocatedBy(locator));
         return getDriver().findElements(locator);
     }
 
-    public By byText(String text) {
+    public static By byText(String text) {
         return By.xpath("//*[text()[contains(.,'" + text + "')]]");
     }
 
-    public By byCSS(String cssSelector) {
+    public static By byCSS(String cssSelector) {
         return By.cssSelector(cssSelector);
     }
 
-    public void open(String URL) {
+    public static void open(String URL) {
         getDriver().get(URL);
     }
 }

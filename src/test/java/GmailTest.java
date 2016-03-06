@@ -20,12 +20,12 @@ public class GmailTest extends BaseTest {
 
         send(AccountData.email, subject);
         refresh();
-        //assertMail(0, subject);
+        assertMail(0, subject);
 
-        //openSent();
-        //assertMail(0, subject);
+        openSent();
+        assertMail(0, subject);
 
-        //openInbox();
+        openInbox();
         search(subject);
         assertMails(subject);
     }

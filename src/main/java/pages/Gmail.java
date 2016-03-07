@@ -5,7 +5,7 @@ import org.openqa.selenium.Keys;
 import static core.ConciseAPI.*;
 
 
-public class GmailPage {
+public class Gmail {
 
     public static void login(String email, String password) {
         $(byCSS("#Email")).sendKeys(email + Keys.ENTER);

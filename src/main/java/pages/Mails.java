@@ -6,7 +6,7 @@ import static core.ConciseAPI.*;
 import static core.CustomConditions.listNthElementHasText;
 import static core.CustomConditions.textsOf;
 
-public class MailsPage {
+public class Mails {
 
     public static By emails = byCSS("[role='main'] .zA");
 

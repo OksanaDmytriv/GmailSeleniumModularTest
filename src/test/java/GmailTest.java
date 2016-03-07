@@ -1,12 +1,12 @@
 import org.junit.Test;
+import pages.Gmail;
+import pages.Mails;
+import pages.Menu;
 import testconfigs.BaseTest;
 import testdata.AccountData;
 
 import static core.Helpers.getUniqueText;
-import static pages.GmailPage.login;
-import static pages.GmailPage.visit;
-import static pages.MailsPage.*;
-import static pages.MenuPage.*;
+
 
 public class GmailTest extends BaseTest {
 
@@ -15,19 +15,19 @@ public class GmailTest extends BaseTest {
 
         String subject = getUniqueText("test");
 
-        visit();
-        login(AccountData.email, AccountData.password);
+        Gmail.visit();
+        Gmail.login(AccountData.email, AccountData.password);
 
-        send(AccountData.email, subject);
-        refresh();
-        assertMail(0, subject);
+        Mails.send(AccountData.email, subject);
+        Menu.refresh();
+        Mails.assertMail(0, subject);
 
-        openSent();
-        assertMail(0, subject);
+        Menu.openSent();
+        Mails.assertMail(0, subject);
 
-        openInbox();
-        search(subject);
-        assertMails(subject);
+        Menu.openInbox();
+        Menu.search(subject);
+        Mails.assertMails(subject);
     }
 
 }

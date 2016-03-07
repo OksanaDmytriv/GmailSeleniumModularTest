@@ -20,8 +20,8 @@ public class ConciseAPI {
         return driver;
     }
 
-    public static void setDriver(WebDriver newDriver) {
-        driver = newDriver;
+    public static void setDriver(WebDriver driver) {
+        ConciseAPI.driver = driver;
     }
 
     public static <V> void assertThat(ExpectedCondition<V> condition) {

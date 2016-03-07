@@ -6,7 +6,7 @@ import org.openqa.selenium.Keys;
 import static core.ConciseAPI.$;
 import static core.ConciseAPI.byCSS;
 
-public class MenuPage {
+public class Menu {
 
     public static void refresh() {
         $(byCSS(".asf")).click();

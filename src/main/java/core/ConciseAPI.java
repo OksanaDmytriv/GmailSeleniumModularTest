@@ -32,11 +32,6 @@ public class ConciseAPI {
         return (new WebDriverWait(getDriver(), timeout)).until(condition);
     }
 
-    // public static WebElement $(By locator) {
-    //     assertThat(visibilityOfElementLocated(locator));
-    //    return getDriver().findElement(locator);
-    //}
-
     public static WebElement $(By locator) {
         return assertThat(visibilityOfElementLocated(locator));
     }
@@ -47,8 +42,7 @@ public class ConciseAPI {
     }
 
     public static List<WebElement> $$(By locator) {
-        assertThat(visibilityOfAllElementsLocatedBy(locator));
-        return getDriver().findElements(locator);
+        return assertThat(visibilityOfAllElementsLocatedBy(locator));
     }
 
     public static By byText(String text) {

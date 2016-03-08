@@ -24,17 +24,21 @@ public class ConciseAPI {
         ConciseAPI.driver = driver;
     }
 
-    public static <V> void assertThat(ExpectedCondition<V> condition) {
-        assertThat(condition, Configuration.timeout);
+    public static <V> V assertThat(ExpectedCondition<V> condition) {
+        return assertThat(condition, Configuration.timeout);
     }
 
-    public static <V> void assertThat(ExpectedCondition<V> condition, int timeout) {
-        (new WebDriverWait(getDriver(), timeout)).until(condition);
+    public static <V> V assertThat(ExpectedCondition<V> condition, int timeout) {
+        return (new WebDriverWait(getDriver(), timeout)).until(condition);
     }
+
+    // public static WebElement $(By locator) {
+    //     assertThat(visibilityOfElementLocated(locator));
+    //    return getDriver().findElement(locator);
+    //}
 
     public static WebElement $(By locator) {
-        assertThat(visibilityOfElementLocated(locator));
-        return getDriver().findElement(locator);
+        return assertThat(visibilityOfElementLocated(locator));
     }
 
     public static WebElement $(String cssSelector) {

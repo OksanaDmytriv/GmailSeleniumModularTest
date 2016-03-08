@@ -37,8 +37,7 @@ public class ConciseAPI {
     }
 
     public static WebElement $(String cssSelector) {
-        By locator = byCSS(cssSelector);
-        return $(locator);
+        return $(byCSS(cssSelector));
     }
 
     public static List<WebElement> $$(By locator) {
